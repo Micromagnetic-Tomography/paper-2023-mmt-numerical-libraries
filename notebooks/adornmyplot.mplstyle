@@ -1,0 +1,26 @@
+# Font style
+font.family: sans-serif
+font.sans-serif: Roboto
+font.cursive : Roboto
+font.size: 16
+font.weight: 300
+xtick.labelsize : 16
+ytick.labelsize : 16
+axes.labelsize: 16
+axes.titlesize : 16
+axes.labelweight : 300
+axes.titleweight : 300
+axes.formatter.use_mathtext : true
+figure.titleweight: 300
+figure.titlesize: 16
+legend.fontsize: 12
+
+text.usetex: false
+mathtext.fallback: stixsans
+mathtext.fontset : custom
+mathtext.it : sans:italic
+mathtext.bf : sans:bold
+mathtext.sf : sans
+mathtext.default : it
+mathtext.rm : sans
+
