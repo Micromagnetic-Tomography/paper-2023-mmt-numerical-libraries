@@ -8,7 +8,7 @@
 #       format_version: '1.3'
 #       jupytext_version: 1.14.5
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 # ---
@@ -20,11 +20,17 @@
 from mmt_multipole_inversion import MagneticSample
 from mmt_multipole_inversion import MultipoleInversion
 import numpy as np
+from pathlib import Path
 
 # %% [markdown]
 # # Quadrupole
 #
 # In the following piece of code we generate a perfect quadrupole from two dipoles, using the `MagneticSample` module. We also specify the dimensions of the measurement surface. We save the data in files with the `quadrupole_y-orientation` names.
+
+# %%
+# Directory to save the files
+BASE_DIR = Path('quadrupole_data')
+BASE_DIR.mkdir(exist_ok=True)
 
 # %%
 # Scan height, Scan area x and y, sensor half-legth x and y (meter)
@@ -51,7 +57,7 @@ sample.dipole_positions = np.array(
 # Update the N of particles in the internal dict
 sample.N_particles = 1
 
-sample.save_data(filename='quadrupole_y-orientation')
+sample.save_data(filename='quadrupole_y-orientation', basedir=BASE_DIR)
 
 # %% [markdown]
 # Now we proceed to do the numerical inversions using two different basis for the multipole expansion. The fully orthogonal basis is the `spherical_harmonics_basis`, the other basis are for testing purposes.
@@ -59,16 +65,16 @@ sample.save_data(filename='quadrupole_y-orientation')
 # %%
 # Inversions ------------------------------------------------------------------
 
-shinv = MultipoleInversion('./MetaDict_quadrupole_y-orientation.json',
-                           './MagneticSample_quadrupole_y-orientation.npz',
+shinv = MultipoleInversion(BASE_DIR / './MetaDict_quadrupole_y-orientation.json',
+                           BASE_DIR / './MagneticSample_quadrupole_y-orientation.npz',
                            expansion_limit='quadrupole',
                            sus_functions_module='spherical_harmonics_basis')
 shinv.generate_measurement_mesh()
 shinv.generate_forward_matrix()
 shinv.compute_inversion(method='sp_pinv')
 
-mcinv = MultipoleInversion('./MetaDict_quadrupole_y-orientation.json',
-                           './MagneticSample_quadrupole_y-orientation.npz',
+mcinv = MultipoleInversion(BASE_DIR / './MetaDict_quadrupole_y-orientation.json',
+                           BASE_DIR / './MagneticSample_quadrupole_y-orientation.npz',
                            expansion_limit='quadrupole',
                            sus_functions_module='maxwell_cartesian_polynomials')
 mcinv.generate_measurement_mesh()

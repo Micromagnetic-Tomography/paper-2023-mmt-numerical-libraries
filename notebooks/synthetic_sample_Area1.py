@@ -267,7 +267,7 @@ axs[0].text(0., 0.0, depthLab, va='top', ha='left',
             transform=axs[0].transAxes)
 
 
-plt.savefig('area1_degroot18_overview.pdf', bbox_inches='tight', dpi=200)
+plt.savefig('figures/area1_degroot18_overview.pdf', bbox_inches='tight', dpi=200)
 plt.show()
 
 # %%

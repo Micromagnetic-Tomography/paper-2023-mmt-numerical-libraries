@@ -19,7 +19,7 @@
 # %% [markdown]
 # In this notebook we test the inversion of the magnetic signal of two dipole sources with volumes equivalent to cuboid particles. The magnetic sources are aligned vertically. The source at the top has a larger volume. The magnetic signal is defined at the sensors of a scanning surface with specific dimensions. A diagram of the system looks like:
 #
-# <img src="./two_dip_diagram.png" width=300>
+# <img src="./figures/two_dip_diagram.png" width=300>
 #
 # In this problem the magnetic signal of the large-volume dipole source obscures the magnetic signal of the source at the bottom, and leads to an ill-conditioned forward matrix. We will study how the error in the magnetization solution grows as the bottom dipole source is moved farther away from the other source.
 
@@ -168,7 +168,7 @@ ax.set_xlabel('Dipole center separation ' + r'$d_{\mathrm{sep}}$' +'  µm')
 plt.show()
 
 # %%
-diag = plt.imread('./two_dip_diagram.png')
+diag = plt.imread('./figures/two_dip_diagram.png')
 
 # %%
 x = np.array([m.sep for m in M_sols])
@@ -196,7 +196,7 @@ ax = axs[1]
 ax.set_axis_off()
 ax.imshow(diag, aspect='auto')
 
-plt.savefig('two_dipoles_relError_diagram.pdf', bbox_inches='tight', dpi=200)
+plt.savefig('figures/two_dipoles_relError_diagram.pdf', bbox_inches='tight', dpi=200)
 plt.show()
 
 # %%
@@ -207,7 +207,7 @@ m = M_sols[0]
 f, ax = plt.subplots()
 ax.imshow(m.BzInv, origin='lower', cmap='RdBu_r')
 ax.set_title(f'Bz Inverted   d = {m.sep}')
-plt.savefig('two_dip_signal.svg')
+plt.savefig('figures/two_dip_signal.svg')
 plt.show()
 
 # %%

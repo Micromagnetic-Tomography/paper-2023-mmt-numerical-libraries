@@ -26,7 +26,7 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 # -
 
-mesh = pv.read('./m_mult_rnd2.tec')
+mesh = pv.read('./Ngrains_mds/m_mult_rnd2.tec')
 
 # +
 # Vector to view rough edges
@@ -80,12 +80,12 @@ p.add_light(light)
 # p.enable_shadows()
 
 p.show(jupyter_backend='static', 
-       screenshot='grain_OPX042_tetra.png'
+       screenshot='./figures/grain_OPX042_tetra.png'
        )
 # p.show()
 # -
 
-# <img src="grain_OPX042_tetra.png" width=400>
+# <img src="./figures/grain_OPX042_tetra.png" width=400>
 
 # +
 p = pv.Plotter(off_screen=True, notebook=False, window_size=[1000, 800])
@@ -111,11 +111,11 @@ p.camera.elevation = -15
 # p.enable_shadows()
 
 # p.save_graphic('grain_OPX042_full.png')
-p.show(jupyter_backend='static', screenshot='grain_OPX042_full.png')
+p.show(jupyter_backend='static', screenshot='./figures/grain_OPX042_full.png')
 # p.show()
 # -
 
-# <img src="grain_OPX042_full.png" width=400>
+# <img src="./figures/grain_OPX042_full.png" width=400>
 
 # +
 mesh.point_data.update(dict(M_vec=np.column_stack((mesh.get_array('Mx'),
@@ -165,11 +165,11 @@ p.camera.elevation = -15
 
 p.save_graphic('grain_OPX042_vortex.svg')
 p.show(jupyter_backend='static',
-       screenshot='grain_OPX042_vortex.png'
+       screenshot='./figures/grain_OPX042_vortex.png'
        )
 # -
 
-# <img src="grain_OPX042_vortex.png" width=400>
+# <img src="./figures/grain_OPX042_vortex.png" width=400>
 
 print('PyVista mesh center:', mesh.center)
 
@@ -177,7 +177,7 @@ print('PyVista mesh center:', mesh.center)
 #
 # In this section we compute the grain signal using the `mmt_micromagnetic_demag_signature` library. The signal will be calculated at a scan surface of `3 µm x 3 µm`, at a height of `z = 1000 nm`. The grain was modelled using finite elements and the MERRILL software. The magnetic moment positions, orientations and volumes are specified in a `vbox` file. Using this information, the grain will be centered at the origin and the highest mesh point will be located at `z = 106.3 nm`. The magnetic state from the `vbox` file is a single vortex and was obtained after energy minimization using MERRILL.
 #
-# <img src="grain_OPX042_vortex.png" width=400> <img src="grain_OPX042_tetra.png" width=400>
+# <img src="./figures/grain_OPX042_vortex.png" width=400> <img src="./figures/grain_OPX042_tetra.png" width=400>
 
 import mmt_micromagnetic_demag_signature as mds
 import numpy as np
@@ -185,7 +185,7 @@ from pathlib import Path
 
 # Using the vbox file we can calculate the geometric centre/centroid of the mesh and shift
 # the coordinates to the origin. Coordinates in micrometer units.
-magvol = np.loadtxt('./mag_vol_rnd2.vbox', skiprows=1)
+magvol = np.loadtxt('./Ngrains_mds/mag_vol_rnd2.vbox', skiprows=1)
 r, vol = np.copy(magvol[:, :3]), np.copy(magvol[:, 6])
 r_GC = r * vol[:, np.newaxis]
 r_GC = r_GC.sum(axis=0) / vol.sum()  # geo center
@@ -207,10 +207,10 @@ nm, µm = 1e-9, 1e-6
 scan_spacing = (10 * nm, 10 * nm)
 scan_limits = np.array([[-1.5, -1.5], [1.5, 1.5]]) * µm
 
-FILE_energy = Path('./grain_OPX042_rnd2.log')
+FILE_energy = Path('./Ngrains_mds/grain_OPX042_rnd2.log')
 HEIGHT = 1000
-FNAME = f'scan_signal_rnd2_scan-height_{HEIGHT}nm.npy'
-VBOX = './mag_vol_rnd2.vbox'
+FNAME =  f'./Ngrains_mds/scan_signal_rnd2_scan-height_{HEIGHT}nm.npy'
+VBOX = './Ngrains_mds/mag_vol_rnd2.vbox'
 HLABEL = 'h' + str(HEIGHT)
 
 scan_height = HEIGHT * nm
@@ -243,12 +243,12 @@ from scipy.ndimage import gaussian_filter
 import matplotlib as mpl
 import matplotlib.patheffects as PathEffects
 
-plt.style.use('../adornmyplot_large.mplstyle')
+plt.style.use('./adornmyplot_large.mplstyle')
 
 plt.figure(figsize=(5, 5))
 vlim = np.abs(signal_array.min())
-plt.imshow(signal_array, origin='lower', cmap='RdYlBu_r', clim=[-vlim, vlim], extent=Sextents)
-c = plt.contour(signal_array, origin='lower', extent=Sextents)
+plt.imshow(signal_array, origin='lower', cmap='RdYlBu_r', clim=[-vlim, vlim], extent=extents)
+c = plt.contour(signal_array, origin='lower', extent=extents)
 plt.clabel(c)
 plt.show()
 
@@ -316,7 +316,7 @@ for i in range(len(levels) - 1):
     l0, l1 = levels[i], levels[i + 1]
     I = drop_shadow(Z, l0, l1)
     ax.imshow(I,
-              extent=Sextents,
+              extent=extents,
               origin="upper", zorder=zorder,
               clim=[-vlim, vlim]
               )
@@ -329,7 +329,7 @@ for i in range(len(levels) - 1):
         levels=[l0, l1],
         origin="lower",
         cmap=cmap,
-        extent=Sextents,
+        extent=extents,
         zorder=zorder,
     )
     # ax.text(0.5, 0.5, 'AAAAAA', zorder=zorder)
@@ -341,7 +341,7 @@ for i in range(len(levels) - 1):
 #     ax.text(*c.get_position(), c.get_text(), color='k', zorder=100, rotation=c.get_rotation())
 
 cfLab = ax.contour(Z, vmin=-vlim, vmax=vlim, levels=levels, origin="lower", linewidths=1,
-                   colors='k', extent=Sextents, zorder=zorder, alpha=0.1)
+                   colors='k', extent=extents, zorder=zorder, alpha=0.1)
 cLab = ax.clabel(cfLab, cfLab.levels[:-1], inline=1, colors='k', zorder=100, fmt="%.1f",
                  fontsize=16)
 for c in cLab: 
@@ -365,7 +365,7 @@ ax.set_ylabel('y  µm')
 ax.set_title('Scan signal')
 
 #### plt.savefig("../../figures/showcases/contour-dropshadow.png", dpi=600)
-plt.savefig("grain_OPX042_signal_H.svg", dpi=300, bbox_inches='tight')
+plt.savefig("figures/grain_OPX042_signal_H.svg", dpi=300, bbox_inches='tight')
 plt.show()
 # -
 # # Multipole Inversion
@@ -381,9 +381,13 @@ import mmt_multipole_inversion as minv
 nm, µm = 1e-9, 1e-6
 scan_height = 1000 * nm
 
+# Directory to save the files
+BASE_DIR = Path('micromagFiles')
+BASE_DIR.mkdir(exist_ok=True)
+
 # Save the particle information in the NPZ file. Alternatively, we can
 # pass these parameters to the MultipoleInversion class directly
-np.savez('particle_vols_height-dep_NPZ_ARRAYS',
+np.savez('./Ngrains_mds/particle_vols_height-dep_NPZ_ARRAYS',
          # Bz_array=,
          # The origin is at the particle's centroid r_GC_new is practically zero
          particle_positions=np.array([np.zeros(3)]),
@@ -408,21 +412,21 @@ metadict["Number of particles"] = 1
 metadict["Sensor origin x"] = -1.5 * µm
 metadict["Sensor origin y"] = -1.5 * µm
 
-with open(f'PARAMETERS_scan-height_1000nm.json', 'w') as f:
+with open(f'./Ngrains_mds/PARAMETERS_scan-height_1000nm.json', 'w') as f:
     json.dump(metadict, f)
 
 # +
 # Perform the inversion for the given ran state, order and scan H
 grain_inv = minv.MultipoleInversion(
-    f'PARAMETERS_scan-height_1000nm.json',
-    'particle_vols_height-dep_NPZ_ARRAYS.npz',
+    './Ngrains_mds/PARAMETERS_scan-height_1000nm.json',
+    './Ngrains_mds/particle_vols_height-dep_NPZ_ARRAYS.npz',
     expansion_limit='octupole',
     sus_functions_module='spherical_harmonics_basis',
     verbose=False
     )
 
 # Load the scan signal data from the NPY file
-grain_inv.Bz_array = np.load(f'scan_signal_rnd2_scan-height_1000nm.npy')
+grain_inv.Bz_array = np.load(f'./Ngrains_mds/scan_signal_rnd2_scan-height_1000nm.npy')
 
 grain_inv.compute_inversion(method='sp_pinv', rcond=1e-25)
 # -
@@ -439,7 +443,7 @@ with np.printoptions(precision=2):
 # We can compute the expected values of the dipole moments and magnetization using the magnetization:
 
 magnetite_Ms_roomT = 482477.0
-mdata = np.loadtxt('./mag_vol_rnd2.vbox', skiprows=1, ndmin=2, usecols=[3, 4, 5, 6])
+mdata = np.loadtxt('./Ngrains_mds/mag_vol_rnd2.vbox', skiprows=1, ndmin=2, usecols=[3, 4, 5, 6])
 # Volume
 vols = mdata[:, 3] * 1e-18
 tot_vol = np.sum(vols)
