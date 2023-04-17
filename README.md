@@ -4,6 +4,14 @@ This repository contains the scripts and code snippets for reproducing the
 results of the publication *Micromagnetic Tomography: Numerical Libraries* by
 D. Cortés-Ortuño, F. Out, M. Kosters, K. Fabian and L. V. de Groot.
 
+The numerical libraries discussed in the study are published in the 
+![Github's repository of the Micromagnetic Tomography project](https://github.com/Micromagnetic-Tomography), where
+the main libraries are:
+
+- ![MMT Multipole Inversion](https://github.com/Micromagnetic-Tomography/mmt_multipole_inversion)
+- ![MMT Dipole Cuboid Inversion](https://github.com/Micromagnetic-Tomography/mmt_dipole_cuboid_inversion)
+- ![MMT Micromagnetic Demag Signature](https://github.com/Micromagnetic-Tomography/mmt_micromagnetic_demag_signature)
+
 ![](imgs/presentation.png)
 
 # Notebooks
@@ -29,3 +37,36 @@ into the notebooks files.
 ††† Cortés-Ortuño, D., Fabian, K., de Groot, L.V., 2022. Mapping magnetic signals of individual magnetite grains to their internal mag-459 netic configurations using micromagnetic models. Journal of Geophysical Research: Solid Earth 127, e2022JB024234.
 
 # Citation
+
+If you use the material from this dataset useful please cite us (you might need
+LaTeX's `url` package). The dataset is hosted in Zenodo.
+
+    @Misc{Cortes2023,
+      author       = {cortés-Ortuño, David and Out, Frenk and Kosters, Martha and Fabian, Karl and de Groot, Lennart V.},
+      title        = {{Dataset for: "Micromagnetic Tomography: Numerical Libraries"}},
+      publisher    = {Zenodo},
+      note         = {Github: \url{https://github.com/davidcortesortuno/paper-2023-mmt-numerical-libraries}},
+      year         = {2022},
+      doi          = {10.5281/zenodo.7838786},
+      url          = {https://doi.org/10.5281/zenodo.7838786},
+    }
+
+If you have a new version of `biblatex` you can also use `@Software` instead of 
+`@Misc`, and add a `version={}` entry. You can also cite the paper associated 
+to this dataset (to be updated):
+
+
+    @article{Cortes2023,
+    author = {cortés-Ortuño, David and Out, Frenk and Kosters, Martha and Fabian, Karl and de Groot, Lennart V.},
+    title = {Micromagnetic Tomography: Numerical Libraries},
+    journal = {Computers \& Geosciences},
+    volume = {},
+    number = {},
+    pages = {},
+    keywords = {magnetism, micromagnetic tomography, multipole, paleomagnetism, rock magnetism},
+    doi = {},
+    url = {},
+    eprint = {},
+    note = {},
+    year = {2023}
+    }
