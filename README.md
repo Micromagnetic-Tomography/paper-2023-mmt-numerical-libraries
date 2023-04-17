@@ -45,7 +45,7 @@ LaTeX's `url` package). The dataset is hosted in Zenodo.
       author       = {Cortés-Ortuño, David and Out, Frenk and Kosters, Martha and Fabian, Karl and de Groot, Lennart V.},
       title        = {{Dataset for: "Micromagnetic Tomography: Numerical Libraries"}},
       publisher    = {Zenodo},
-      note         = {Github: \url{https://github.com/davidcortesortuno/paper-2023-mmt-numerical-libraries}},
+      note         = {Github: \url{https://github.com/Micromagnetic-Tomography/paper-2023-mmt-numerical-libraries}},
       year         = {2022},
       doi          = {10.5281/zenodo.7838786},
       url          = {https://doi.org/10.5281/zenodo.7838786},
