@@ -42,7 +42,7 @@ If you use the material from this dataset useful please cite us (you might need
 LaTeX's `url` package). The dataset is hosted in Zenodo.
 
     @Misc{Cortes2023,
-      author       = {cortés-Ortuño, David and Out, Frenk and Kosters, Martha and Fabian, Karl and de Groot, Lennart V.},
+      author       = {Cortés-Ortuño, David and Out, Frenk and Kosters, Martha and Fabian, Karl and de Groot, Lennart V.},
       title        = {{Dataset for: "Micromagnetic Tomography: Numerical Libraries"}},
       publisher    = {Zenodo},
       note         = {Github: \url{https://github.com/davidcortesortuno/paper-2023-mmt-numerical-libraries}},
@@ -57,7 +57,7 @@ to this dataset (to be updated):
 
 
     @article{Cortes2023,
-    author = {cortés-Ortuño, David and Out, Frenk and Kosters, Martha and Fabian, Karl and de Groot, Lennart V.},
+    author = {Cortés-Ortuño, David and Out, Frenk and Kosters, Martha and Fabian, Karl and de Groot, Lennart V.},
     title = {Micromagnetic Tomography: Numerical Libraries},
     journal = {Computers \& Geosciences},
     volume = {},
