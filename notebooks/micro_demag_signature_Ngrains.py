@@ -80,10 +80,8 @@ light.set_direction_angle(-60, 20)
 p.add_light(light)
 # p.enable_shadows()
 
-p.show(jupyter_backend='static', 
-       screenshot='./figures/grain_OPX042_tetra.png'
-       )
-# p.show()
+p.show(screenshot='./figures/grain_OPX042_tetra.png')
+# p.show(jupyter_backend='static')
 # -
 
 Image("figures/grain_OPX042_tetra.png", width=400)
@@ -112,8 +110,8 @@ p.camera.elevation = -15
 # p.enable_shadows()
 
 # p.save_graphic('grain_OPX042_full.png')
-p.show(jupyter_backend='static', screenshot='./figures/grain_OPX042_full.png')
-# p.show()
+p.show(screenshot='./figures/grain_OPX042_full.png')
+# p.show(jupyter_backend='static')
 # -
 
 Image("figures/grain_OPX042_full.png", width=400)
@@ -165,9 +163,7 @@ p.camera.azimuth = 80
 p.camera.elevation = -15
 
 p.save_graphic('grain_OPX042_vortex.svg')
-p.show(jupyter_backend='static',
-       screenshot='./figures/grain_OPX042_vortex.png'
-       )
+p.show(screenshot='./figures/grain_OPX042_vortex.png')
 # -
 
 Image("figures/grain_OPX042_vortex.png", width=400)
