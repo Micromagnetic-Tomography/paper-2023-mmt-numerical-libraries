@@ -85,7 +85,7 @@ p.show(jupyter_backend='static',
 # p.show()
 # -
 
-# <img src="./figures/grain_OPX042_tetra.png" width=400>
+# <img src="figures/grain_OPX042_tetra.png" width=400>
 
 # +
 p = pv.Plotter(off_screen=True, notebook=False, window_size=[1000, 800])
@@ -115,7 +115,7 @@ p.show(jupyter_backend='static', screenshot='./figures/grain_OPX042_full.png')
 # p.show()
 # -
 
-# <img src="./figures/grain_OPX042_full.png" width=400>
+# <img src="figures/grain_OPX042_full.png" width=400>
 
 # +
 mesh.point_data.update(dict(M_vec=np.column_stack((mesh.get_array('Mx'),
@@ -169,7 +169,7 @@ p.show(jupyter_backend='static',
        )
 # -
 
-# <img src="./figures/grain_OPX042_vortex.png" width=400>
+# <img src="figures/grain_OPX042_vortex.png" width=400>
 
 print('PyVista mesh center:', mesh.center)
 
@@ -177,7 +177,7 @@ print('PyVista mesh center:', mesh.center)
 #
 # In this section we compute the grain signal using the `mmt_micromagnetic_demag_signature` library. The signal will be calculated at a scan surface of `3 µm x 3 µm`, at a height of `z = 1000 nm`. The grain was modelled using finite elements and the MERRILL software. The magnetic moment positions, orientations and volumes are specified in a `vbox` file. Using this information, the grain will be centered at the origin and the highest mesh point will be located at `z = 106.3 nm`. The magnetic state from the `vbox` file is a single vortex and was obtained after energy minimization using MERRILL.
 #
-# <img src="./figures/grain_OPX042_vortex.png" width=400> <img src="./figures/grain_OPX042_tetra.png" width=400>
+# <img src="figures/grain_OPX042_vortex.png" width=400> <img src="figures/grain_OPX042_tetra.png" width=400>
 
 import mmt_micromagnetic_demag_signature as mds
 import numpy as np
