@@ -13,6 +13,17 @@
 #     name: python3
 # ---
 
+# # Micromagnetic modelling
+#
+# This notebook computes the magnetic signal from the micromagnetic modell of a natural magnetite grain. The grain profile and data is obtained from Nikolaisen et al. (2020)\*. The micromagnetic model and the magnetic state is obtained from Cortés-Ortuño et al. (2022).
+#
+# *Nikolaisen, E.S., 2020. Replication Data and appendix for: Hysteresis of natural magnetite ensembles: Micromagnetics of silicate-hosted magnetite inclusions based on focused-ion beam nanotomography. URL: https://doi.org/10.18710/Q0F8PA*
+#
+# *Nikolaisen, E.S., Harrison, R.J., Fabian, K., McEnroe, S.A., 2020. Hysteresis of natural magnetite ensembles: Micromagnetics of silicate-hosted magnetite inclusions based on focused-ion-beam nanotomography. Geochemistry, Geophysics, Geosystems 21, e2020GC009389. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2020GC009389*
+#
+# *Cortés-Ortuño, D., Fabian, K., de Groot, L.V., 2022. Mapping magnetic signals of individual magnetite grains to their internal mag-459
+# netic configurations using micromagnetic models. Journal of Geophysical Research: Solid Earth 127, e2022JB024234. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2022JB024234*
+
 # # 3D Plots
 
 # We start by plotting the magnetic grain using PyVista. The grain was modelled using the finite element micromagnetic software MERRILL. The grain hosts a single vortex configuration that was obtained after energy minimization.

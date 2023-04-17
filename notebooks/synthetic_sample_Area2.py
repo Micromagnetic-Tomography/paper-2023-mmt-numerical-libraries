@@ -24,11 +24,23 @@ import matplotlib.pyplot as plt
 plt.style.use('adornmyplot.mplstyle')
 import matplotlib as mpl
 
+import pyvista as pv
+
+import mmt_dipole_cuboid_inversion as dci
+import mmt_dipole_cuboid_inversion.tools as dcit
+
+import mmt_multipole_inversion as minv
+import json
+
 # %% [markdown]
 # # Data
 
 # %% [markdown]
-# Here we download the data of (de Groot et al., 2018) from the public repository PANGAEA. The updated version of the data contains three areas that are pre-processed and where tomography and magnetometry coordinates are co-registered. We unzip the data and extract the contents:
+# We start downloading the data of de Groot et al. (2018)\* from the public repository PANGAEA. The updated version of the data contains three areas that are pre-processed and where tomography and magnetometry coordinates are co-registered. We unzip the data and extract the contents.
+#
+# *de Groot, L.V., Fabian, K., Béguin, A., Reith, P., Barnhoorn, A., Hilgenkamp, H., 2018. List of grains and results of the Scanning SQUID Magnetometer (SSM) scan. URL: https://doi.org/10.1594/PANGAEA.886724*
+#
+# *de Groot, L.V., Fabian, K., Béguin, A., Reith, P., Barnhoorn, A., Hilgenkamp, H., 2018. Determining Individual Particle Magnetizations in Assemblages of Micrograins. Geophysical Research Letters 45, 2995–3000. URL: https://agupubs.onlinelibrary.wiley.com/doi/478*
 
 # %%
 # DATA ------------------------------------------------------------------------
@@ -79,9 +91,6 @@ with np.printoptions(suppress=True):
 #
 # In this section we make a visualization of the tomographic data. Tomography voxels are already aggregated into the largest possible cuboids using the `cuboid_aggregation` algorithm included in the `mmt_dipole_cuboid_inversion` library. The visualization is done using the PyVista library.
 # * Notice that the `CuboidFile` in this case has an extra row that we must skip
-
-# %%
-import pyvista as pv
 
 # %%
 data_dir = Path('deGroot2018_data/PDI-16803')
@@ -142,10 +151,6 @@ pV.show(jupyter_backend='static')
 
 # %% [markdown]
 # In this section we apply the homogeneously magnetized particle model to do the inversions. This means cuboids are asumed uniformly magnetized and we obtain dipole order solutions from the inversions.
-
-# %%
-import mmt_dipole_cuboid_inversion as dci
-import mmt_dipole_cuboid_inversion.tools as dcit
 
 # %%
 data_dir = Path('deGroot2018_data/PDI-16803')
@@ -276,14 +281,7 @@ print(depthLab)
 # # Multipole Inversion
 
 # %% [markdown]
-# In this section we apply the multipole expansion model for the inversions, thus we use the `mmt_multipole_inversion library`
-
-# %%
-import mmt_multipole_inversion as minv
-import json
-
-# %% [markdown]
-# Start by computing the particle centers from the tomography/cuboids data:
+# In this section we apply the multipole expansion model for the inversions, thus we use the `mmt_multipole_inversion library`. Start by computing the particle centers from the tomography/cuboids data:
 
 # %%
 # -----------------------------------------------------------------------------
@@ -579,5 +577,3 @@ for i in range(Nparticles):
     print(res)
     
 print('\n- Multipole Inversion using point sensors')
-
-# %%
