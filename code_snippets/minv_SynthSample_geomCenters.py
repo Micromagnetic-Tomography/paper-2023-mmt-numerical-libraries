@@ -2,7 +2,7 @@ import numpy as np
 from pathlib import Path
 
 # -----------------------------------------------------------------------------
-# DEFINE PARTICLES
+# DEFINE PARTICLES: compute particle centers from cuboid aggregations
 
 data_dir = Path('deGroot2018_data/PDI-16803')
 

@@ -22,7 +22,7 @@ inv_area1_ums.Bz_array = np.loadtxt(data_dir / 'Area1-90-fig2MMT.txt')
 # Compute the inversion with a small relative tolerance
 inv_area1_ums.compute_inversion(rcond=1e-30, method='sp_pinv')
 
-# Compute magnetizations - every row has the magnetic moments of a single grain
+# Compute magnetizations - each row has the magnetic moments of a single grain
 # We get the first 3 columns for every row
 mag_area1_ums = inv_area1_ums.inv_multipole_moments[:, :3]
 mag_area1_ums /= inv_area1_ums.volumes[:, None]
