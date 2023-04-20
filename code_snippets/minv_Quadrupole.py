@@ -45,4 +45,4 @@ mcinv = MultipoleInversion('./MetaDict_quadrupole_y-orientation.json',
                            expansion_limit='quadrupole',
                            sus_functions_module='maxwell_cartesian_polynomials')
 mcinv.generate_measurement_mesh()
-mcinv.compute_inversion(method='sp_pinv2')
+mcinv.compute_inversion(method='sp_pinv')
