@@ -75,7 +75,7 @@ for dipole_sep in range(5, 81, 5):
     dip_inversion.read_files(scanfile, cuboidfile, cuboid_scaling_factor=1e-6)
     dip_inversion.set_scan_domain(gen_sd_mesh_from='sensor_center_domain')
     dip_inversion.prepare_matrix(method='cython')
-    dip_inversion.calculate_inverse(method='scipy_pinv', rcond=1e-30)
+    dip_inversion.calculate_inverse(method='scipy_pinv', rcond=None)  # Use default rcond
 
     # Check relative error is less than 1% = 0.01
     # assert abs(dip_inversion.Mag[1] - Ms) / Ms < 1e-2

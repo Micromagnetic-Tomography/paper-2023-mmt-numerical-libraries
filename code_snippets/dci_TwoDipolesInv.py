@@ -21,4 +21,4 @@ dip_inversion = dci.DipoleCuboidInversion(None, sensor_domain, scan_spacing,
 dip_inversion.read_files(scanfile, cuboidfile, cuboid_scaling_factor=1e-6)
 dip_inversion.set_scan_domain(gen_sd_mesh_from='sensor_center_domain')
 dip_inversion.prepare_matrix(method='cython')
-dip_inversion.calculate_inverse(method='scipy_pinv', rcond=1e-30)
+dip_inversion.calculate_inverse(method='scipy_pinv')

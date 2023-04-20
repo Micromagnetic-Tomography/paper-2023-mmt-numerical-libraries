@@ -23,4 +23,4 @@ mag_inv.set_scan_domain(gen_sd_mesh_from='sensor_center_domain')
 # We then compute the forward (Green's) matrix to be inverted
 mag_inv.prepare_matrix(method='cython')
 # And we do the inversion
-mag_inv.calculate_inverse(method='scipy_pinv', rtol=1e-25)
+mag_inv.calculate_inverse(method='scipy_pinv', rtol=1e-20)

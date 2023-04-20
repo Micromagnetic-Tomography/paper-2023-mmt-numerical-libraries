@@ -179,8 +179,13 @@ mag_inv.set_scan_domain(gen_sd_mesh_from='sensor_center_domain')
 # We then compute the forward (Green's) matrix that we use to invert the scan field:
 mag_inv.prepare_matrix(method='cython')
 
-# And we do the inversion:
-mag_inv.calculate_inverse(method='scipy_pinv', rtol=1e-30)
+# And we do the inversion::::
+# Notice that rtol is defined in Scipy with a default value of : max(M, N) * eps, 
+# where eps is the machine precision value of the datatype of the Forward G matrix (here float64),
+# and M,N are the dimensions of the matrix.
+# eps is around 2.22e-16; however the smallest number that can be represented in Numpy is 
+# substantially smaller, in the order of e-308; See: numpy.finfo
+mag_inv.calculate_inverse(method='scipy_pinv', rtol=1e-20)
 
 # %%
 mag_dpinv = np.linalg.norm(mag_inv.Mag.reshape(-1, 3), axis=1)
@@ -377,7 +382,7 @@ berr_minv = {}
 for exp_limit in ['dipole', 'quadrupole']:
 # for exp_limit in ['dipole']:
     inv_area1_ums.expansion_limit = exp_limit
-    inv_area1_ums.compute_inversion(method='sp_pinv', rtol=1e-30)
+    inv_area1_ums.compute_inversion(method='sp_pinv', rtol=1e-20)
     # inv_area1_ums.compute_inversion(rcond=1e-30, method='np_pinv')
     
     # print(inv_area1_ums.inv_multipole_moments[:, :3] / inv_area1_ums.volumes[:, None])
@@ -448,7 +453,7 @@ angles_minv_ps_raw = {}
 for exp_limit in ['dipole', 'quadrupole', 'octupole']:
 # for exp_limit in ['dipole']:
     inv_area1_ums.expansion_limit = exp_limit
-    inv_area1_ums.compute_inversion(method='sp_pinv', rtol=1e-30)
+    inv_area1_ums.compute_inversion(method='sp_pinv', rtol=1e-20)
     # inv_area1_ums.compute_inversion(rcond=1e-30, method='np_pinv')
     
     # print(inv_area1_ums.inv_multipole_moments[:, :3] / inv_area1_ums.volumes[:, None])

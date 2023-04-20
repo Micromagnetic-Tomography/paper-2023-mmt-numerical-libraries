@@ -38,7 +38,7 @@ shinv = MultipoleInversion('./MetaDict_quadrupole_y-orientation.json',
                            expansion_limit='quadrupole',
                            sus_functions_module='spherical_harmonics_basis')
 shinv.generate_measurement_mesh()
-shinv.compute_inversion(method='sp_pinv2')
+shinv.compute_inversion(method='sp_pinv')
 
 mcinv = MultipoleInversion('./MetaDict_quadrupole_y-orientation.json',
                            './MagneticSample_quadrupole_y-orientation.npz',

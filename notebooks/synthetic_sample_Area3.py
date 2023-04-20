@@ -162,7 +162,7 @@ CuboidFile = data_dir / 'FWInput-FineCuboids-A3.txt'
 cub_data = np.loadtxt(CuboidFile, skiprows=1)
 cub_data[:, 2] *= -1
 
-SQUID_sensor_domain = np.array([[0, 0], [350, 200]]) * 1e-6
+SQUID_sensor_domain = np.array([[0, 0], [249, 249]]) * 1e-6
 SQUID_spacing = 1e-6
 SQUID_deltax = 0.5e-6
 SQUID_deltay = 0.5e-6
@@ -179,7 +179,7 @@ mag_inv.set_scan_domain(gen_sd_mesh_from='sensor_center_domain')
 mag_inv.prepare_matrix(method='cython')
 
 # And we do the inversion:
-mag_inv.calculate_inverse(method='scipy_pinv', rtol=1e-30)
+mag_inv.calculate_inverse(method='scipy_pinv', rtol=1e-20)
 
 # %%
 mag_dpinv = np.linalg.norm(mag_inv.Mag.reshape(-1, 3), axis=1)
@@ -382,7 +382,7 @@ berr_minv = {}
 for exp_limit in ['dipole', 'quadrupole']:
 # for exp_limit in ['dipole']:
     inv_area3_ums.expansion_limit = exp_limit
-    inv_area3_ums.compute_inversion(method='sp_pinv', rtol=1e-30)
+    inv_area3_ums.compute_inversion(method='sp_pinv', rtol=1e-20)
     # inv_area3_ums.compute_inversion(rcond=1e-30, method='np_pinv')
     
     # print(inv_area3_ums.inv_multipole_moments[:, :3] / inv_area3_ums.volumes[:, None])
@@ -453,7 +453,7 @@ angles_minv_ps_raw = {}
 for exp_limit in ['dipole', 'quadrupole', 'octupole']:
 # for exp_limit in ['dipole']:
     inv_area3_ums.expansion_limit = exp_limit
-    inv_area3_ums.compute_inversion(method='sp_pinv', rtol=1e-30)
+    inv_area3_ums.compute_inversion(method='sp_pinv', rtol=1e-20)
     # inv_area3_ums.compute_inversion(rcond=1e-30, method='np_pinv')
     
     # print(inv_area3_ums.inv_multipole_moments[:, :3] / inv_area3_ums.volumes[:, None])

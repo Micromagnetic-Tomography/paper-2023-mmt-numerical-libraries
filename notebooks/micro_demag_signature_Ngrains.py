@@ -301,17 +301,6 @@ def drop_shadow(Z, l0, l1, sigma=5, alpha=0.5):
     I = np.zeros((A.shape[0], A.shape[1], 4))
     I[:, :, 3] = (1 - A) * alpha
     return I
-
-# # Contours to do the labeling
-# fig = plt.figure(figsize=(5, 5))
-# ax = fig.add_axes([0, 0, 1, 1], frameon=True)
-# cfLab = ax.contour(Z, vmin=-vlim, vmax=vlim, levels=levels, origin="lower",
-#                    cmap=cmap, extent=[-1.5, 1.5, -1.5, 1.5], zorder=zorder)
-# cLab = ax.clabel(cfLab, cfLab.levels[:-1], inline=1, colors='k', zorder=100, fmt="%.1f")
-# cTexts = [c for c in cLab]
-# del fig
-# # del cLab
-# del cfLab
 # +
 fig = plt.figure(figsize=(5, 5))
 ax = fig.add_axes([0, 0, 1, 1], frameon=True)
@@ -338,9 +327,6 @@ for i in range(len(levels) - 1):
         extent=extents,
         zorder=zorder,
     )
-    # ax.text(0.5, 0.5, 'AAAAAA', zorder=zorder)
-    # conts.append(cf)
-    # ax.clabel(cf, [l0], inline=0, colors='k', zorder=100, fmt="%.1f")
     zorder += 1
     
 # for c in cTexts:
@@ -434,7 +420,7 @@ grain_inv = minv.MultipoleInversion(
 # Load the scan signal data from the NPY file
 grain_inv.Bz_array = np.load(f'./Ngrains_mds/scan_signal_rnd2_scan-height_1000nm.npy')
 
-grain_inv.compute_inversion(method='sp_pinv', rcond=1e-25)
+grain_inv.compute_inversion(method='sp_pinv', rtol=1e-20)
 # -
 
 with np.printoptions(precision=2):
