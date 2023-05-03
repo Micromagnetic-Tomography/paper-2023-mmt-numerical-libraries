@@ -10,7 +10,7 @@ SaveDir = Path('SyntheticSampleFiles')
 SaveDir.mkdir(exist_ok=True)
 
 particles = np.loadtxt('area1_ums_part_centers_vols.txt')
-# Scale the pos and vols by µm before saving in npz file
+# Scale the pos and vols by mu-m before saving in npz file
 np.savez(SaveDir / 'Area1_UMS_NPZ_ARRAYS',
          particle_positions=particles[:, :3] * 1e-6,
          volumes=particles[:, 3] * 1e-18)
