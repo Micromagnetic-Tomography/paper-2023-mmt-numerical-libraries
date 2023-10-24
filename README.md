@@ -1,4 +1,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7838786.svg)](https://doi.org/10.5281/zenodo.7838786)
+![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]
+
+[cc-by-nc-sa-shield]: https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg
 
 # Micromagnetic Tomography: Numerical Libraries
 
